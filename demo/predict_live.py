@@ -158,7 +158,10 @@ while True:
             y = landmarks.part(n).y
             cv2.circle(img=frame, center=(x, y), radius=3, color=(0, 255, 0), thickness=-1)
 
-        if lip_distance > 45: # person is talking
+        # Display the current lip distance for calibration
+        cv2.putText(frame, f"Lip Distance: {lip_distance:.1f}", (50, 150), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255, 255, 0), 2)
+        
+        if lip_distance > 60: # person is talking (increased threshold)
             cv2.putText(frame, "Talking", (50, 50), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
             
             curr_word_frames += [lip_frame.tolist()]
